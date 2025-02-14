@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %} 
+
+<div class='container'>
+    <h3>📦 물류재고</h3>
+    <h5>📅 {{time}}, 류호윤</h5>
+    <br>
+    {% if group_items %}
+        {% for k, v in group_items.items %}
+            <h5>📍 {{ k }}</h5>
+            {% for item in v %}
+                <p>
+                    <strong>{{ item.name }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>벌크 {{ item.amountOfBulk }}, 개별 {{ item.amountOfEach }}</span>
+                </p>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>🚫 등록된 아이템이 없습니다.</p>  <!-- ✅ 아이템이 없는 경우 처리 -->
+    {% endif %}
+</div>
+
+{% endblock %}

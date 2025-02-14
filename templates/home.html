@@ -1,0 +1,22 @@
+{% extends "base.html" %}  <!-- ✅ 공통 레이아웃 파일 (선택) -->
+
+{% block content %}
+<div class="container">
+    <h1>메가커피 마천역점 재고관리시스템</h1>
+    <p>메가커피 마천역점 재고관리시스템.</p>
+
+    <!-- ✅ 주요 기능 버튼 -->
+    <a href="{% url 'stock:list' %}" class="btn btn-primary">📦 재고 목록 보기</a>
+    <a href="{% url 'stock:upload_csv' %}" class="btn btn-secondary">📤 CSV 업로드</a>
+    <a href="{% url 'admin:index' %}" class="btn btn-warning">⚙️ 관리자 페이지</a>
+
+    <!-- ✅ 로그인 및 회원가입 버튼 -->
+    {% if user.is_authenticated %}
+        <p>👋 {{ user.username }}님, 환영합니다!</p>
+        <a href="" class="btn btn-danger">로그아웃</a>
+    {% else %}
+        <a href="" class="btn btn-success">로그인</a>
+        <a href="" class="btn btn-info">회원가입</a>
+    {% endif %}
+</div>
+{% endblock %}

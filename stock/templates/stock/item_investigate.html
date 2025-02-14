@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %} 
+
+
+<div class='container'>
+    <h1>🕵️‍♂️ 재고조사</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!--
+        <p>이름: {{ form.instance.name }}</p>
+        <input type="hidden" name="name" value="{{ form.instance.name }}">
+
+        <p>종류: {{ form.instance.typeOfItem }}</p>
+        <input type="hidden" name="typeOfItem" value="{{ form.instance.typeOfItem }}">
+
+        <p>위치: {{ form.instance.place }}</p>
+        <input type="hidden" name="place" value="{{ form.instance.place }}">
+        -->
+        <p><label for="{{ form.name.id_for_label }}">이름: </label>{{ form.name }}</p>
+        <p><label for="{{ form.typeOfItem.id_for_label }}">종류: </label>{{ form.typeOfItem }}</p>
+        <p><label for="{{ form.place.id_for_label }}">위치: </label>{{ form.place }}</p>
+        <p><label for="{{ form.amountOfBulk.id_for_label }}">벌크 수량: </label>{{form.amountOfBulk}}</p>
+        <p><label for="{{ form.amountOfEach.id_for_label }}">개별 수량 : </label>{{form.amountOfEach}}</p>
+        <input type="submit" class="btn btn-success" value='SAVE'>
+    </form>
+        {% if prev_item %}
+            <a href='/stock/investigate_item/{{prev_item.id}}' class='btn btn-secondary'>PREV</a>
+        {% endif %}
+        {% if next_item %}
+            <a href='/stock/investigate_item/{{next_item.id}}' class='btn btn-primary'>NEXT</a>
+        {% else %}
+            <a href='/stock/list' class='btn btn-warning'>FINISH</a>
+        {% endif %}
+
+    {% endblock %}
+</div>

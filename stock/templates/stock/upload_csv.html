@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3> CSV FIle upload Page</h3>
+
+{% if messages %}
+    {% for messages in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{ form.as_p}}
+    <button type="submit" class="btn btn-success">UPLOAD</button>
+</form>
+
+<a href="{% url 'stock:list' %}" class="btn btn-secondary">목록으로</a>
+
+
+{% endblock %}

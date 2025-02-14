@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %} 
+{% load static %}
+<div class='container'>
+    <div>
+    <br>
+        <div class='btn-group' role='group' aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'stock:create_item'%}'">아이템추가</button>
+            <a href='/stock/investigate_item/{{ first_item.id }}' class='btn btn-primary'>재고조사</a>
+            <a href='/stock/share_list' target='_blank' class='btn btn-secondary'>텍스트</a>
+            <a href='' class='btn btn-secondary'>출력</a>
+            <a href='/stock/readonly_list' target='_blank'  class='btn btn-secondary'>공유</a>      
+        </div>
+    
+        <form class="d-flex" role="search" method='post'>
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" name='search' placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    <br>
+    </div>
+    
+    <h3>📦 재고현황</h3>
+    <div class="table-container">
+        <table border="1" cellspacing="0" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>코드</th>
+                    <th>타입</th>
+                    <th>이름</th>
+                    <th>단위</th>
+                    <th>재고위치</th>
+                    <th>벌크수량</th>
+                    <th>개별수량</th>
+                    <th>최종저장</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in all_item %}
+                <tr>
+                    <td>{{ item.itemCode }}</td>
+                    <td>{{ item.typeOfItem }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.units }}</td>
+                    <td>{{ item.place }}</td>
+                    <td>{{ item.amountOfBulk }}</td>
+                    <td>{{ item.amountOfEach }}</td>
+                    <td>{{ item.lastTimeSaved|date:"Y-m-d H:i:s" }}</td>  <!-- ✅ YYYY-MM-DD HH:MM:SS 형식으로 출력 -->
+                    <td>
+                        <a href='/stock/update_item/{{ item.id }}' class='btn btn-primary'>수정</a> 
+                        <!--<a href='/stock/detail_item/{{ item.id }}' class='btn btn-primary'>정보</a>-->
+                        <a href='/stock/update_item_each/{{ item.id }}' class='btn btn-primary'>수량</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
