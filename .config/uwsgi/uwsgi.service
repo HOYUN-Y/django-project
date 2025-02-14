@@ -3,7 +3,7 @@ Description=uWSGI service
 After=syslog.target
 
 [Service]
-ExecStart=/home/ubuntu/django_venv/bin/uwsgi -i /srv/django-project/.config/uwsgi/mysite.ini
+ExecStart=/home/ubuntu/django_venv/bin/uwsgi -i /srv/django-project/.config/uwsgi/erpsite.ini
 
 Restart=always
 KillSignal=SIGQUIT
