@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4">😢 404 Not Found</h1>
+    <p class="lead">요청하신 페이지를 찾을 수 없습니다.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">홈으로 돌아가기</a>
+</div>
+{% endblock %}

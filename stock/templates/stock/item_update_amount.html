@@ -2,13 +2,13 @@
 {% block content %} 
 
 <div class='container'>
-    <h3>Item update amount</h3>
+    <h3>🗃️ 개별 아이템 수량 변경</h3>
     <form method="post">
         {% csrf_token %}
         
         <p><label for="{{ form.amountOfBulk.id_for_label }}">벌크 수량 : </label>{{form.amountOfBulk}}</p>
         <p><label for="{{ form.amountOfEach.id_for_label }}">개별 수량 : </label>{{form.amountOfEach}}</p>
-        <input type="submit" value="submit">
+        <input type="submit" class='btn btn-success' value="업데이트" name='submit'>
     </form>
 
 </div>

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from .views import test_404
 
 
 def home(request):
@@ -27,4 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('stock/',include('stock.urls')),
     path('',home,name='home'),
+    #path('test-404/', test_404),
 ]
+
+handler404 = 'erpsite.views.custom_page_not_found_view'
