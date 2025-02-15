@@ -1,36 +1,60 @@
 {% extends "base.html" %}
 {% block content %} 
 
-
 <div class='container'>
     <h1>🕵️‍♂️ 재고조사</h1>
     <form method="post">
         {% csrf_token %}
-        <!--
-        <p>이름: {{ form.instance.name }}</p>
-        <input type="hidden" name="name" value="{{ form.instance.name }}">
 
-        <p>종류: {{ form.instance.typeOfItem }}</p>
-        <input type="hidden" name="typeOfItem" value="{{ form.instance.typeOfItem }}">
-
-        <p>위치: {{ form.instance.place }}</p>
-        <input type="hidden" name="place" value="{{ form.instance.place }}">
-        -->
         <p><label for="{{ form.name.id_for_label }}">이름: </label>{{ form.name }}</p>
         <p><label for="{{ form.typeOfItem.id_for_label }}">종류: </label>{{ form.typeOfItem }}</p>
         <p><label for="{{ form.place.id_for_label }}">위치: </label>{{ form.place }}</p>
-        <p><label for="{{ form.amountOfBulk.id_for_label }}">벌크 수량: </label>{{form.amountOfBulk}}</p>
-        <p><label for="{{ form.amountOfEach.id_for_label }}">개별 수량 : </label>{{form.amountOfEach}}</p>
+        
+        <!-- ✅ 벌크 수량 - 부트스트랩 스핀박스 -->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{ form.amountOfBulk.id_for_label }}">벌크 수량:</label>
+            <button type="button" class="btn btn-outline-secondary" onclick="decreaseValue('id_amountOfBulk')">-</button>
+            {{ form.amountOfBulk }}
+            <button type="button" class="btn btn-outline-secondary" onclick="increaseValue('id_amountOfBulk')">+</button>
+        </div>
+
+        <!-- ✅ 개별 수량 - 부트스트랩 스핀박스 -->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{ form.amountOfEach.id_for_label }}">개별 수량:</label>
+            <button type="button" class="btn btn-outline-secondary" onclick="decreaseValue('id_amountOfEach')">-</button>
+            {{ form.amountOfEach }}
+            <button type="button" class="btn btn-outline-secondary" onclick="increaseValue('id_amountOfEach')">+</button>
+        </div>
+
         <input type="submit" class="btn btn-success" value='SAVE'>
     </form>
-        {% if prev_item %}
-            <a href='/stock/investigate_item/{{prev_item.id}}' class='btn btn-secondary'>PREV</a>
-        {% endif %}
-        {% if next_item %}
-            <a href='/stock/investigate_item/{{next_item.id}}' class='btn btn-primary'>NEXT</a>
-        {% else %}
-            <a href='/stock/list' class='btn btn-warning'>FINISH</a>
-        {% endif %}
 
-    {% endblock %}
+    <!-- ✅ 이전 / 다음 버튼 -->
+    {% if prev_item %}
+        <a href='/stock/investigate_item/{{prev_item.id}}' class='btn btn-secondary'>PREV</a>
+    {% endif %}
+    {% if next_item %}
+        <a href='/stock/investigate_item/{{next_item.id}}' class='btn btn-primary'>NEXT</a>
+    {% else %}
+        <a href='/stock/list' class='btn btn-warning'>FINISH</a>
+    {% endif %}
 </div>
+
+<!-- ✅ JavaScript 코드 (부트스트랩 스핀박스 기능 추가) -->
+<script>
+function increaseValue(id) {
+    let input = document.getElementById(id);
+    let value = parseFloat(input.value) || 0;
+    input.value = (value + 0.5).toFixed(1);  // 0.1 단위 증가 가능
+}
+
+function decreaseValue(id) {
+    let input = document.getElementById(id);
+    let value = parseFloat(input.value) || 0;
+    if (value > 0) {
+        input.value = (value - 0.5).toFixed(1);  // 0.1 단위 감소 가능
+    }
+}
+</script>
+
+{% endblock %}

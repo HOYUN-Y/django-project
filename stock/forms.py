@@ -30,8 +30,8 @@ class InvestigateItemForm(ModelForm):
             'name' : forms.TextInput(attrs={'readonly':'readonly'}),
             'typeOfItem' : forms.TextInput(attrs={'readonly':'readonly'}),
             'place': forms.TextInput(attrs={'readonly' : 'readonly'}),
-            'amountOfBulk':forms.NumberInput(attrs={'step':'0.5','min':'0'}),
-            'amountOfEach':forms.NumberInput(attrs={'step':'0.5','min':'0'})
+            'amountOfBulk':forms.NumberInput(attrs={'id': 'id_amountOfBulk','step':'0.5','min':'0'}),
+            'amountOfEach':forms.NumberInput(attrs={'id': 'id_amountOfEach','step':'0.5','min':'0'})
         }
 
     def __init__(self, *args, **kwargs):
