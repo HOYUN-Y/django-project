@@ -1,4 +1,29 @@
+.do-hyeon-regular {
+    font-family: "Do Hyeon", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
+body {
+font-family:"Do Hyeon", sans-serif;
+}
+
+.custom-navbar {
+    background-color: #003999 !important;  /* ✅ 네비게이션 바 배경색 */
+}
+
+.custom-navbar .navbar-nav .nav-link {
+    color: white !important;  /* ✅ 네비게이션 링크 글자색 */
+}
+
+.custom-navbar .navbar-brand {
+    color: white !important;  /* ✅ 브랜드(로고) 색상 */
+}
+
+:root {
+    --bs-font-sans-serif: "Do Hyeon", sans-serif;
+  }
+  
 /* ✅ 테이블 가로 스크롤 활성화 */
 .table-container {
     width: 100%;

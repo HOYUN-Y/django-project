@@ -2,8 +2,7 @@
 {% block content %} 
 {% load static %}
 <div class='container'>
-    <div>
-    <br>
+    <div class='d-flex justify-content-start align-items-center flex-wrap' style="margin:20px 0px 20px 0px;">
         <div class='btn-group' role='group' aria-label="Basic example">
             <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'stock:create_item'%}'">아이템추가</button>
             <a href='/stock/investigate_item/{{ first_item.id }}' class='btn btn-primary'>재고조사</a>
@@ -11,13 +10,13 @@
             <a href='' class='btn btn-secondary'>출력</a>
             <a href='/stock/readonly_list' target='_blank'  class='btn btn-secondary'>공유</a>      
         </div>
-    
+        <div style="padding:0px 0px 0px 10px;">
         <form class="d-flex" role="search" method='post'>
             {% csrf_token %}
             <input class="form-control me-2" type="search" name='search' placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-    <br>
+        </div>
     </div>
     
     <h3>📦 재고현황</h3>
@@ -60,4 +59,3 @@
 </div>
 
 {% endblock %}
-

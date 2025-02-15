@@ -2,14 +2,17 @@
 
 {% block content %}
 <div class="container">
-    <h1>호윤의 업무페이지</h1>
-    <p>메가커피 마천역점 재고관리시스템.</p>
+    <div style="margin: 30px 0px 30px 0px;">
+        <h1>호윤의 업무페이지</h1>
+        <p>메가커피 마천역점 재고관리시스템.</p>
 
-    <!-- ✅ 주요 기능 버튼 -->
-    <a href="{% url 'stock:list' %}" class="btn btn-primary">📦 재고 목록 보기</a>
-    <a href="{% url 'stock:upload_csv' %}" class="btn btn-secondary">📤 CSV 업로드</a>
-    <a href="{% url 'admin:index' %}" class="btn btn-warning">⚙️ 관리자 페이지</a>
-
+    
+    <div class="btn-group">
+        <!-- ✅ 주요 기능 버튼 -->
+        <a href="{% url 'stock:list' %}" class="btn btn-primary">📦 재고 목록 보기</a>
+        <a href="{% url 'stock:upload_csv' %}" class="btn btn-secondary">📤 CSV 업로드</a>
+        <a href="{% url 'admin:index' %}" class="btn btn-warning">⚙️ 관리자 페이지</a>
+    </div>
     <!-- ✅ 로그인 및 회원가입 버튼 -->
     {% if user.is_authenticated %}
         <p>👋 {{ user.username }}님, 환영합니다!</p>
@@ -18,5 +21,7 @@
         <a href="" class="btn btn-success">로그인</a>
         <a href="" class="btn btn-info">회원가입</a>
     {% endif %}
+    </div>
+
 </div>
 {% endblock %}
