@@ -28,8 +28,8 @@ DEBUG = False
 allowed_host_list = [".ap-northeast-2.compute.amazonaws.com", 
                  "devprofessional.xyz", 
                  "www.devprofessional.xyz"]
-#ALLOWED_HOSTS = allowed_host_list
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = allowed_host_list
+#ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
