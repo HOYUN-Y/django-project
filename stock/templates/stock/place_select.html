@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %} 
+
+<div class='container'>
+    <h1>🕵️‍♂️ 재고조사</h1>
+    <form method="get" action="{% url 'stock:investigate_item' pk=object.pk %}">
+        <label for="place">Place</label>
+        <select name="place" id="place" class="form-select" onchange="this.form.submit()">
+            <option value="">--select--</option>
+            {% for place in unique_places %}
+                <option value="{{ place }}" {% if place == selected_place %}selected{% endif %}>{{place}}</option>
+            {% endfor %}
+        
+    </form>
+
+{% endblock %}

@@ -25,19 +25,22 @@
             {{ form.amountOfEach }}
             <button type="button" class="btn btn-outline-secondary" onclick="increaseValue('id_amountOfEach')">+</button>
         </div>
-
-        <input type="submit" class="btn btn-success" value='SAVE'>
+        <div style='display:flex; justify-content: center;'>
+            <input type="submit" class="btn btn-success" value='SAVE'>
+        </div>
+        
     </form>
-
+    <div style='display:flex; justify-content: center;'>
     <!-- ✅ 이전 / 다음 버튼 -->
     {% if prev_item %}
-        <a href='/stock/investigate_item/{{prev_item.id}}' class='btn btn-secondary'>PREV</a>
+        <a href='/stock/investigate_item/{{prev_item.id}}' class='btn btn-secondary mx-2'>PREV</a>
     {% endif %}
     {% if next_item %}
-        <a href='/stock/investigate_item/{{next_item.id}}' class='btn btn-primary'>NEXT</a>
+        <a href='/stock/investigate_item/{{next_item.id}}' class='btn btn-primary mx-2'>NEXT</a>
     {% else %}
         <a href='/stock/list' class='btn btn-warning'>FINISH</a>
     {% endif %}
+    </div>
 </div>
 
 <!-- ✅ JavaScript 코드 (부트스트랩 스핀박스 기능 추가) -->

@@ -38,6 +38,10 @@ font-family:"Do Hyeon", sans-serif;
     position: relative;
 }
 
+.btncustom {
+    margin: 10px;
+}
+
 /* ✅ 테이블 스타일 */
 table {
     width: 100%;

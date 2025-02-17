@@ -177,7 +177,12 @@ def upload_csv(request):
 
 
 def readonly_list(request):
-    items = Item.objects.order_by('place','itemCode')
+    search_query = request.POST.get('search','')
+
+    if search_query:
+        items = Item.objects.filter(name__icontains=search_query)
+    else:
+        items = Item.objects.order_by('place','itemCode')
     context = {'items':items}
     return render(request, 'stock/readonly_list.html', context=context)
 
