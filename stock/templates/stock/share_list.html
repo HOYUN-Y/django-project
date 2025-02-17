@@ -2,6 +2,8 @@
 {% block content %} 
 
 <div class='container'>
+    <button class="btn btn-primary mb-3" onclick="copyToClipboard()">Clipboard</button>
+    <textarea id="clipboardText" style="position: absolute; left: -9999px;"></textarea>
     <h3>📦 물류재고</h3>
     <h5>📅 {{time}}, 류호윤</h5>
     <br>
@@ -11,7 +13,7 @@
             {% for item in v %}
                 <p>
                     <strong>{{ item.name }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span>벌크 {{ item.amountOfBulk }}, 개별 {{ item.amountOfEach }}</span>
+                    <span>벌크 {{ item.amountOfBulk|floatformat:"-1" }}, 개별 {{ item.amountOfEach|floatformat:"-1" }}</span>
                 </p>
             {% endfor %}
         {% endfor %}
@@ -19,5 +21,27 @@
         <p>🚫 등록된 아이템이 없습니다.</p>  <!-- ✅ 아이템이 없는 경우 처리 -->
     {% endif %}
 </div>
+
+<script>
+function copyToClipboard() {
+    let text = "📦 물류재고 목록 ({{ time|date:'Y-m-d H:i:s' }})\n\n";  // ✅ 헤더 포함
+    {% for place, items in group_items.items %}
+        text += "📍[{{ place }}]\n";
+        {% for item in items %}
+            text += "{{ item.name }} : {{ item.amountOfBulk|floatformat:"-1"  }}, {{ item.amountOfEach|floatformat:"-1"}}\n\n";
+        {% endfor %}
+        text += "\n";  // ✅ 장소별 줄바꿈
+    {% endfor %}
+
+    // ✅ textarea에 텍스트 삽입 후 복사 실행
+    let textarea = document.getElementById("clipboardText");
+    textarea.value = text;
+    textarea.select();
+    document.execCommand("copy");
+
+    // ✅ 사용자에게 복사 완료 알림
+    alert("📋 재고 목록이 클립보드에 복사되었습니다!");
+}
+</script>
 
 {% endblock %}
