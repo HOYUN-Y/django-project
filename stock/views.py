@@ -31,9 +31,14 @@ def list_item(request):
     return render(request, 'stock/list.html', context= context)
 
 def share_list(request):
+    search_query = request.POST.get('search','')
+
+    if search_query:
+        items = Item.objects.filter(name__icontains = search_query)
+    else:
+        items = Item.objects.order_by('place','itemCode')
     inspection_time = datetime.now(ZoneInfo("Asia/Seoul"))
     print(inspection_time)
-    items = models.Item.objects.order_by('place','itemCode')
     group_items = defaultdict(list)
     for item in items:
         group_items[item.place].append(item)
